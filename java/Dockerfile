@@ -6,6 +6,4 @@ RUN yum -y update && \
   yum -y install java-${JAVA_VERSION}-openjdk && \
   yum clean all
 
-ENV LANG C.UTF-8
-
-ENV JAVA_HOME /usr/lib/jvm/jre-$JAVA_VERSION-openjdk.x86_64
+ENV JAVA_HOME /usr/lib/jvm/jre-$JAVA_VERSION
