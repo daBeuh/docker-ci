@@ -23,18 +23,18 @@ RUN set -x \
 	&& rm bin/*.bat \
 	&& rm -rf webapps/* \
 	&& rm tomcat.tar.gz* \
+	&& rm bin/tomcat-native.tar.gz \
 	\
 	&& ( \
 		export CATALINA_HOME="$PWD" \
-	) \
-	&& rm bin/tomcat-native.tar.gz
+	)
 
 # Create Tomcat user
-RUN groupadd -r tomcat && \
- useradd -g tomcat -d ${CATALINA_HOME} -s /sbin/nologin -c "Tomcat user" tomcat && \
- chown -R tomcat:tomcat ${CATALINA_HOME} && \
- chmod -R 400 ${CATALINA_HOME}/conf/* && \
- chmod -R 300 ${CATALINA_HOME}/logs
+RUN groupadd -r tomcat \
+	&& useradd -g tomcat -d ${CATALINA_HOME} -s /sbin/nologin -c "Tomcat user" tomcat \
+	&& chown -R tomcat:tomcat ${CATALINA_HOME} \
+ 	&& chmod -R 400 ${CATALINA_HOME}/conf/* \
+ 	&& chmod -R 300 ${CATALINA_HOME}/logs
 
 USER tomcat
 
